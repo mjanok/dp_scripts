@@ -1,0 +1,9 @@
+python train.py --workers 8 --device 0 --batch-size 16 --data data/custom.yaml --img 640 640 --cfg cfg/training/yolov7-custom.yaml --weights 'yolov7_training.pt' --name yolov7-custom --hyp data/hyp.scratch.custom.yaml  
+python test.py --data data/custom.yaml --img 640 --batch 32 --conf 0.001 --iou 0.65 --device 0 --weights first_run.pt --name yolov7_firstrun_val
+
+python train.py --workers 8 --device 0 --batch-size 16 --data data/custom.yaml --img 640 640 --cfg cfg/training/yolov7-custom.yaml --weights 'yolov7_training.pt' --name yolov7-custom_fifth --hyp data/hyp.scratch.custom.yaml
+python test.py --data data/custom_fifth.yaml --img 640 --batch 32 --conf 0.001 --iou 0.65 --device 0 --weights fifth_run.pt --name yolov7_fifth-run_val
+
+python train_aux.py --workers 8 --device 0 --batch-size 16 --data data/custom_seventh.yaml --img 1280 1280 --cfg cfg/training/yolov7-w6.yaml --weights 'yolov7-e6e_training.pt' --name yolov7-w6-seventh --hyp data/hyp.scratch.p6.yaml
+
+python detect.py --weights seventh_run.pt --conf 0.25 --img-size 1280 --source inference/images/ --save-txt --save-conf  
